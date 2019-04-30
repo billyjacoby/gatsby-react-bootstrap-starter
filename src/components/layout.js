@@ -13,7 +13,7 @@ import { Container, Row, Col } from "react-bootstrap"
 import Header from "./header"
 import Navbar from "./navBar"
 
-const Layout = ({ children }) => (
+const Layout = ({ children, pageInfo }) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -32,10 +32,10 @@ const Layout = ({ children }) => (
               <Header siteTitle={data.site.siteMetadata.title} />
             </Col>
           </Row>
-          <Navbar />
+          <Navbar pageInfo={pageInfo} />
           <Row noGutters>
             <Col>
-              <Container>
+              <Container className="mt-5">
                 <main>{children}</main>
               </Container>
             </Col>

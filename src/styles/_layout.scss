@@ -7,6 +7,12 @@ div.full-height {
   min-height: 100vh;
 }
 
+a.link-no-style {
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 .footer-col {
   display: flex;
   flex-direction: column;
