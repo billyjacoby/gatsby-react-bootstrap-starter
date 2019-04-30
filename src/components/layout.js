@@ -6,11 +6,12 @@
  */
 
 import React from "react"
-import PropTypes from "prop-types"
 import { StaticQuery, graphql } from "gatsby"
 
+import { Container, Row, Col } from "react-bootstrap"
+
 import Header from "./header"
-import "./layout.css"
+import Navbar from "./navBar"
 
 const Layout = ({ children }) => (
   <StaticQuery
@@ -25,29 +26,37 @@ const Layout = ({ children }) => (
     `}
     render={data => (
       <>
-        <Header siteTitle={data.site.siteMetadata.title} />
-        <div
-          style={{
-            margin: `0 auto`,
-            maxWidth: 960,
-            padding: `0px 1.0875rem 1.45rem`,
-            paddingTop: 0,
-          }}
-        >
-          <main>{children}</main>
-          <footer>
-            © {new Date().getFullYear()}, Built with
-            {` `}
-            <a href="https://www.gatsbyjs.org">Gatsby</a>
-          </footer>
-        </div>
+        <Container fluid className="px-0 main">
+          <Row noGutters className="justify-content-center">
+            <Col>
+              <Header siteTitle={data.site.siteMetadata.title} />
+            </Col>
+          </Row>
+          <Navbar />
+          <Row noGutters>
+            <Col>
+              <Container>
+                <main>{children}</main>
+              </Container>
+            </Col>
+          </Row>
+        </Container>
+        <Container fluid className="px-0">
+          <Row noGutters>
+            <Col className="footer-col">
+              <footer>
+                <span>
+                  © {new Date().getFullYear()}, Built with
+                  {` `}
+                  <a href="https://www.gatsbyjs.org">Gatsby</a>
+                </span>
+              </footer>
+            </Col>
+          </Row>
+        </Container>
       </>
     )}
   />
 )
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-}
 
 export default Layout
